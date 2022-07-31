@@ -2,15 +2,31 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>BankAccountOfAnimals</title>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
 </head>
 <body>
-<div>
-    <div th:each="BankAccount : ${animals}">
-        <h1
-                th:text="${BankAccount.name} + ' - ' +${#numbers.formatDecimal(BankAccount.balance, 3, 2)} + ' ' + ' (' + ${BankAccount.animalType} + ') '"
-        ></h1>
-    </div>
-</div>
+<table>
+    <tr th:each="BankAccount : ${animals}">
+        <td>
+            <p th:text="${BankAccountStat.count} + '.'"></p>
+        </td>
+        <td>
+            <p th:text="${BankAccount.name}"></p>
+        </td>
+        <td>
+            <p th:text="${#numbers.formatDecimal(BankAccount.balance, 3, 2)}"></p>
+        </td>
+        <td>
+            <p th:text="${BankAccount.animalType}"></p>
+        </td>
+        <td>
+            <p th:text="${BankAccount.kingOrNot()}"
+               th:style="${BankAccount.animalType == 'Lion' ? 'color:green;' : 'color:blue'}"></p>
+        </td>
+        <td>
+            <p th:text="${BankAccount.GoodOrBad()}"></p>
+        </td>
+    </tr>
+</table>
 </body>
 </html>
